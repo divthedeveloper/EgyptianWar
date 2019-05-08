@@ -1,6 +1,5 @@
 package EgyptianWarPackage;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -8,10 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * 
@@ -19,102 +14,76 @@ import javax.swing.JPanel;
  *
  */
 public class Card {
-	private String faceName;
-	private String face;
-	private int faceValue;
-	private BufferedImage cardImage;
 
-	private String fileName;
+	private String suit;
+	private int rank;
+	private BufferedImage cardImage;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param faceName
-	 * @param face
-	 * @param faceValue
+	 * @param suit
+	 * @param rank
 	 * @param cardImage
 	 */
-	public Card(String faceName, String face, int faceValue,
-			BufferedImage cardImage) {
+	public Card(int rank, String suit,
+			BufferedImage cardImage, String fileName) {
 		super();
-		this.faceName = faceName;
-		this.face = face;
-		this.faceValue = faceValue;
-		this.cardImage = cardImage;
+		this.suit = suit;
+		this.rank = rank;
+		BufferedImage tempCardImage;
+		try {
+			tempCardImage = ImageIO.read(new File(fileName));
+			this.cardImage = resize(tempCardImage, 200, 300);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public String getFaceName() {
-		return faceName;
+	/**
+	 * 
+	 * Getters and Setters
+	 */
+	public void setSuit(String suit) {
+		this.suit = suit;
 	}
 
-	public void setFaceName(String faceName) {
-		this.faceName = faceName;
+	public String getSuit() {
+		return suit;
 	}
 
-	public String getFace() {
-		return face;
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 
-	public void setFace(String face) {
-		this.face = face;
-	}
-
-	public int getFaceValue() {
-		return faceValue;
-	}
-
-	public void setFaceValue(int faceValue) {
-		this.faceValue = faceValue;
+	public int getRank() {
+		return rank;
 	}
 
 	public BufferedImage getCardImage() {
 		return cardImage;
 	}
-	
-	public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
-	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
-	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
 
-	    Graphics2D g2d = dimg.createGraphics();
-	    g2d.drawImage(tmp, 0, 0, null);
-	    g2d.dispose();
+	public static BufferedImage resize(BufferedImage img, int newW, int newH) {
+		Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+		BufferedImage dimg = new BufferedImage(newW, newH,
+				BufferedImage.TYPE_INT_ARGB);
 
-	    return dimg;
-	}  
-	
-	
+		Graphics2D g2d = dimg.createGraphics();
+		g2d.drawImage(tmp, 0, 0, null);
+		g2d.dispose();
+
+		return dimg;
+	}
+
 	public void setCardImage(BufferedImage cardImage) {
 		this.cardImage = cardImage;
 	}
 
 	@Override
 	public String toString() {
-		return "Card [faceName=" + faceName + ", face=" + face + ", faceValue="
-				+ faceValue + ", cardImage=" + cardImage + "]";
-	}
-
-	public static void main(String[] args) throws IOException {
-		BufferedImage aceofSpadesimage = ImageIO.read(new File(
-				"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\AS.png"));
-
-		BufferedImage newimg = resize(aceofSpadesimage, 200, 300);
-		
-		Card aceOfSpades = new Card("Spades", "Ace", 1, newimg);
-		// create a JFrame
-		JFrame window = new JFrame();
-		window.setSize(1000, 1000);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		// create a JPanel
-		JPanel contentPane = new JPanel(new BorderLayout());
-
-		JLabel cardLabel = new JLabel(
-				new ImageIcon(aceOfSpades.getCardImage()));
-		cardLabel.setSize(100, 100);
-
-		contentPane.add(cardLabel);
-		window.add(contentPane);
-
-		window.setVisible(true);
+		return "Card [suit =" + suit + ", rank ="
+				+ rank + ", cardImage=" + cardImage + "]";
 	}
 }

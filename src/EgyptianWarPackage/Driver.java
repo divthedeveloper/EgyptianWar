@@ -1,35 +1,45 @@
 package EgyptianWarPackage;
 
+import java.awt.BorderLayout;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class Driver {
 
-	
+	public static void main (String [] args) throws IOException {
+		Card[] a = new Card[52];
+		Deck deck1 = new Deck(a);
+		
+		
+		Card aceOfSpades = a[0];
+		Card aceOfHearts = a[1];
+		
+		// create a JFrame
+		JFrame window = new JFrame();
+		window.setSize(1000, 1000);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// create a JPanel
+		JPanel contentPane = new JPanel(new BorderLayout());
+
+		JLabel cardLabel = new JLabel(
+				new ImageIcon(aceOfSpades.getCardImage()));
+		cardLabel.setSize(100, 100);
+		
+		JLabel cardLabel2 = new JLabel(
+				new ImageIcon(aceOfHearts.getCardImage()));
+		cardLabel.setSize(100, 100);
+		
+
+		contentPane.add(cardLabel, BorderLayout.SOUTH);
+		contentPane.add(cardLabel2, BorderLayout.NORTH);
+		window.add(contentPane);
+
+		window.setVisible(true);
+	}
+
 }
-
-/*
-
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\10C.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\10D.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\10H.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\10S.png"
-
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\2C.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\2D.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\2H.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\2S.png"
-
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\3C.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\3D.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\3H.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\3S.png"
-
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\4C.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\4D.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\4H.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\4S.png"
-
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\5C.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\5D.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\5H.png"
-"C:\\Users\\DK\\eclipse-workspace\\EgyptianWar\\src\\EgyptianWarPackage\\5S.png"
-
-*/
