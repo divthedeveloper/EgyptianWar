@@ -9,7 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Driver {
-
+	private static boolean gameWon = false;
+	
 	public static void main (String [] args) throws IOException {
 		Card[] a = new Card[52];
 		Deck deck1 = new Deck(a);
@@ -17,6 +18,17 @@ public class Driver {
 		
 		Card aceOfSpades = a[0];
 		Card aceOfHearts = a[1];
+		
+		
+		//functionality of the game
+		// still figuring it out
+		do {
+			int n;
+			if (a[n] + a[n+1] = a[n+2]) {
+				gameWon = true;
+			}
+			
+		} while (gameWon = false);
 		
 		// create a JFrame
 		JFrame window = new JFrame();
